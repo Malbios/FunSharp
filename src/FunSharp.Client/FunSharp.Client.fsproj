@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Routes.fs" />
+    <Compile Include="Model.fs" />
+    <Compile Include="Message.fs" />
+    <Compile Include="ModelUpdate.fs" />
+    <Compile Include="Pages\Root.fs" />
+    <Compile Include="Pages\NotFound.fs" />
+    <Compile Include="Pages\AccessDenied.fs" />
+    <Compile Include="Main.fs" />
+    <Compile Include="Startup.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Bolero" Version="0.*" />
+    <PackageReference Include="Bolero.Build" Version="0.*" />
+    <PackageReference Include="Bolero.HotReload" Version="0.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.*" />
+    <PackageReference Include="Radzen.Blazor" Version="7.1.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FunSharp.Abstraction\FunSharp.Abstraction.fsproj" />
+    <ProjectReference Include="..\FunSharp.Common\FunSharp.Common.fsproj" />
+    <ProjectReference Include="..\FunSharp.Model\FunSharp.Model.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\assets\favicon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
