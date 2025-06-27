@@ -12,27 +12,32 @@ type Main = Template<"wwwroot/main.html">
 let currentTheme model =
     model.UserSettings.Theme |> Option.defaultWith (fun _ -> ThemeMode.Light)
     
-let page model =
-        Main()
-            .Body(
-                concat {
-                    comp<RadzenComponents>
+let page model (dispatch: Message -> unit) =
+    let testPageDispatch message =
+        dispatch (Message.TestPageMessage message)
+        
+    Main()
+        .Body(
+            concat {
+                comp<RadzenComponents>
 
-                    cond model.Page
-                    <| function
-                        | Page.Root -> Root.page
+                cond model.Page
+                <| function
+                    | Page.Root -> Root.page
 
-                        | Page.NotFound -> NotFound.page
-                        | Page.AccessDenied -> AccessDenied.page
-                }
-            )
-            .Theme(Union.toString (currentTheme model))
-            .Elt()
+                    | Page.NotFound -> NotFound.page
+                    | Page.AccessDenied -> AccessDenied.page
+                    
+                    | Page.TestPage -> TestPage.view model.TestPage testPageDispatch
+            }
+        )
+        .Theme(Union.toString (currentTheme model))
+        .Elt()
 
 let view model (dispatch: Message -> unit) =
-        
+    
     concat {
-        page model
+        page model dispatch
 
         match model.Error with
         | Some errorText ->

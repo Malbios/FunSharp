@@ -12,4 +12,5 @@ type Model = {
     Page: Page
     Error: string option
     UserSettings: UserSettings
+    TestPage: TestPage.Model
 }

@@ -9,3 +9,7 @@ html, body {
   align-items: center;
   height: 100vh;
 }
+
+.hover-area {
+  background-color: darkgray;
+}

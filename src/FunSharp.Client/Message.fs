@@ -7,3 +7,4 @@ type Message =
     | Error of exn
     | ClearError
     | SetThemeMode of ThemeMode
+    | TestPageMessage of TestPage.Message

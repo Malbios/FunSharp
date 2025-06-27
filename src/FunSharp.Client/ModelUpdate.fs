@@ -16,6 +16,9 @@ module ModelUpdate =
         UserSettings = {
             Theme = Some ThemeMode.Dark
         }
+        TestPage = {
+            HoverText = String.empty
+        }
     }
 
     let update (navigate: NavigationType -> string -> unit) getCurrentUrl message model =
@@ -29,11 +32,12 @@ module ModelUpdate =
 
             let model = { model with Error = None }
             model, cmd
+            
         | Message.Error(HttpException error) ->
             { model with Error = error |> HttpError.getMessage |> Some }, Cmd.none
-
+            
         | Message.Error exn ->
-            Console.WriteLine "error dispatched"
+            Console.WriteLine "an error occurred"
             { model with Error = Some exn.Message }, Cmd.none
 
         | Message.ClearError -> { model with Error = None }, Cmd.none
@@ -42,5 +46,10 @@ module ModelUpdate =
             let settings = { model.UserSettings with Theme = Some theme }
 
             { model with UserSettings = settings }, Cmd.none
+            
+        | Message.TestPageMessage msg ->
+            let testPageModel, cmd = TestPage.update msg model.TestPage
+            
+            { model with TestPage = testPageModel }, cmd
 
         | Message.None -> model, Cmd.none

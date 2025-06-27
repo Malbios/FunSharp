@@ -24,7 +24,7 @@ module Startup =
         Console.WriteLine("Application started. Initializing...")
 
         let builder = WebApplication.CreateBuilder(args)
-
+        
         builder.Services.AddRadzenComponents() |> ignore
 
         builder.WebHost.UseStaticWebAssets() |> ignore
@@ -33,7 +33,7 @@ module Startup =
         let configuration = builder.Configuration
 
         services
-            .AddHttpLogging()
+            .AddHttpLogging(fun _ -> ())
             .AddOptions()
             .AddBoleroHost()
             .AddBlazoredLocalStorage()
@@ -91,12 +91,6 @@ module Startup =
                 endpoints.MapBlazorHub() |> ignore
                 endpoints.MapFallbackToBolero(Index.page) |> ignore)
         |> ignore
-        
-        // app.MapRazorComponents<Index.Page>()
-        //     .AddInteractiveServerRenderMode()
-        //     .AddInteractiveWebAssemblyRenderMode()
-        //     .AddAdditionalAssemblies(typeof<Client.Main.MyApp>.Assembly)
-        // |> ignore
 
         app.Run()
 

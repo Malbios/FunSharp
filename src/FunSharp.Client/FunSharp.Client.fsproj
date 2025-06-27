@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Routes.fs" />
-    <Compile Include="Model.fs" />
-    <Compile Include="Message.fs" />
-    <Compile Include="ModelUpdate.fs" />
+    <Compile Include="Components\HoverArea.fs" />
     <Compile Include="Pages\Root.fs" />
     <Compile Include="Pages\NotFound.fs" />
     <Compile Include="Pages\AccessDenied.fs" />
+    <Compile Include="Pages\TestPage.fs" />
+    <Compile Include="Model.fs" />
+    <Compile Include="Message.fs" />
+    <Compile Include="ModelUpdate.fs" />
     <Compile Include="Main.fs" />
     <Compile Include="Startup.fs" />
   </ItemGroup>
