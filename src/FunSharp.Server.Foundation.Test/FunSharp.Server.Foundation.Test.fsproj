@@ -19,4 +19,8 @@
         <ProjectReference Include="..\FunSharp.Server.Foundation\FunSharp.Server.Foundation.fsproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Compile Include="LiteDbPersistence.Tests.fs"/>
+    </ItemGroup>
+
 </Project>

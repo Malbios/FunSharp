@@ -6,12 +6,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Library.fs"/>
+      <ProjectReference Include="..\FunSharp.Common\FunSharp.Common.fsproj" />
+      <ProjectReference Include="..\FunSharp.Model\FunSharp.Model.fsproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FunSharp.Common\FunSharp.Common.fsproj" />
-      <ProjectReference Include="..\FunSharp.Model\FunSharp.Model.fsproj" />
+      <Compile Include="IPersistence.fs" />
     </ItemGroup>
 
 </Project>
