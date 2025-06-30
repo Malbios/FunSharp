@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BF23CEE7
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunSharp.Common", "src\FunSharp.Common\FunSharp.Common.fsproj", "{2AB4B917-6FE3-42B4-943D-C0BEBC80567B}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunSharp.Common.Test", "src\FunSharp.Common.Test\FunSharp.Common.Test.fsproj", "{B89332B2-535A-4925-BD25-38CAF8B2BBE8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{5145700E-0D0C-4FD7-8FA8-4EBDA649A500}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunSharp.Abstraction", "src\FunSharp.Abstraction\FunSharp.Abstraction.fsproj", "{97E1D33E-4949-4FAF-BCED-CC39E6675A5D}"
@@ -26,6 +24,8 @@ EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunSharp.Server.Foundation.Test", "src\FunSharp.Server.Foundation.Test\FunSharp.Server.Foundation.Test.fsproj", "{F1B3E584-46A8-4B8F-A254-BB108D66DB6B}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunSharp.Test.Common", "src\FunSharp.Test.Common\FunSharp.Test.Common.fsproj", "{93463757-28E1-4AD0-90C9-98FE1AA47A85}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunSharp.Common.Test", "src\FunSharp.Common.Test\FunSharp.Common.Test.fsproj", "{0E8E1706-D96F-46B4-8A02-425A6D8C88EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +45,6 @@ Global
 		{2AB4B917-6FE3-42B4-943D-C0BEBC80567B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB4B917-6FE3-42B4-943D-C0BEBC80567B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AB4B917-6FE3-42B4-943D-C0BEBC80567B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B89332B2-535A-4925-BD25-38CAF8B2BBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B89332B2-535A-4925-BD25-38CAF8B2BBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B89332B2-535A-4925-BD25-38CAF8B2BBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97E1D33E-4949-4FAF-BCED-CC39E6675A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{97E1D33E-4949-4FAF-BCED-CC39E6675A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97E1D33E-4949-4FAF-BCED-CC39E6675A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,16 +66,20 @@ Global
 		{93463757-28E1-4AD0-90C9-98FE1AA47A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93463757-28E1-4AD0-90C9-98FE1AA47A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93463757-28E1-4AD0-90C9-98FE1AA47A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8E1706-D96F-46B4-8A02-425A6D8C88EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8E1706-D96F-46B4-8A02-425A6D8C88EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8E1706-D96F-46B4-8A02-425A6D8C88EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8E1706-D96F-46B4-8A02-425A6D8C88EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B89332B2-535A-4925-BD25-38CAF8B2BBE8} = {BF23CEE7-D39F-4B61-82BD-DF8AE80271D8}
 		{2AB4B917-6FE3-42B4-943D-C0BEBC80567B} = {5145700E-0D0C-4FD7-8FA8-4EBDA649A500}
 		{A98B9956-FEC0-478C-8EB1-56834787D9C7} = {BF23CEE7-D39F-4B61-82BD-DF8AE80271D8}
 		{F1B3E584-46A8-4B8F-A254-BB108D66DB6B} = {BF23CEE7-D39F-4B61-82BD-DF8AE80271D8}
 		{93463757-28E1-4AD0-90C9-98FE1AA47A85} = {BF23CEE7-D39F-4B61-82BD-DF8AE80271D8}
+		{0E8E1706-D96F-46B4-8A02-425A6D8C88EB} = {BF23CEE7-D39F-4B61-82BD-DF8AE80271D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CFD6033-FB8D-48BE-9628-9D83DC023CAB}

@@ -1,25 +1,26 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <GenerateProgramFile>false</GenerateProgramFile>
+        <IsTestProject>true</IsTestProject>
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Tests.fs"/>
+        <PackageReference Include="coverlet.collector" Version="6.0.4"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1"/>
+        <PackageReference Include="xunit" Version="2.9.3"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="3.1.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="6.0.2"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
-        <PackageReference Include="xunit" Version="2.9.2"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"/>
+        <ProjectReference Include="..\FunSharp.Test.Common\FunSharp.Test.Common.fsproj"/>
+        <ProjectReference Include="..\FunSharp.Common\FunSharp.Common.fsproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FunSharp.Common\FunSharp.Common.fsproj" />
-      <ProjectReference Include="..\FunSharp.Test.Common\FunSharp.Test.Common.fsproj" />
+        <Compile Include="JsonSerializer.Tests.fs"/>
     </ItemGroup>
 
 </Project>

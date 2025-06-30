@@ -18,7 +18,7 @@ module TestPage =
         | SetHoverText of string
         | ClearHoverText
         
-    let update message model : Model * Cmd<Message>=
+    let update message model =
         match message with
         | SetHoverText text -> { model with HoverText = text }, Cmd.none
         | ClearHoverText -> { model with HoverText = String.empty }, Cmd.none
