@@ -2,32 +2,18 @@ namespace FunSharp.Client
 
 open System
 open Elmish
+open FunSharp.Client.Model
 open FunSharp.Common
 
-type NavigationType =
-    | Local
-    | External
+module Update =
 
-module ModelUpdate =
-
-    let initModel = {
-        Page = Page.Root
-        Error = None
-        UserSettings = {
-            Theme = Some ThemeMode.Dark
-        }
-        TestPage = {
-            HoverText = String.empty
-        }
-    }
-
-    let update (navigate: NavigationType -> string -> unit) getCurrentUrl message model =
+    let update (_: NavigationType -> string -> unit) _ message model =
 
         match message with
         | Message.SetPage page ->
             let model, cmd =
                 match page with
-                | Page.Root -> { model with Page = page }, Cmd.none
+                | Page.Root -> { model with Page = page }, Cmd.ofMsg (Message.SetPage Page.TestPage)
                 | _ -> { model with Page = page }, Cmd.none
 
             let model = { model with Error = None }
@@ -47,9 +33,9 @@ module ModelUpdate =
 
             { model with UserSettings = settings }, Cmd.none
             
-        | Message.TestPageMessage msg ->
-            let testPageModel, cmd = TestPage.update msg model.TestPage
+        | Message.TestPageMsg msg ->
+            let subModel, cmd = Pages.TestPage.update msg model.TestPage
             
-            { model with TestPage = testPageModel }, cmd
+            { model with TestPage = subModel }, cmd
 
         | Message.None -> model, Cmd.none

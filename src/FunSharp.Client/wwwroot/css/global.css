@@ -13,3 +13,7 @@ html, body {
 .hover-area {
   background-color: darkgray;
 }
+
+.center-text {
+  text-align: center;
+}

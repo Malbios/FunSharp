@@ -1,7 +1,9 @@
-namespace FunSharp.Client
+namespace FunSharp.Client.Pages
 
+open Bolero
 open Bolero.Html
 open Elmish
+open FunSharp.Client.Model
 open Radzen
 open Radzen.Blazor
 open FunSharp.Client.Components
@@ -9,43 +11,45 @@ open FunSharp.Common
 
 [<RequireQualifiedAccess>]
 module TestPage =
-    
-    type Model = {
-        HoverText: string
-    }
-    
-    type Message =
-        | SetHoverText of string
-        | ClearHoverText
-        
-    let update message model =
-        match message with
-        | SetHoverText text -> { model with HoverText = text }, Cmd.none
-        | ClearHoverText -> { model with HoverText = String.empty }, Cmd.none
-    
-    let view model dispatch=
 
-        comp<RadzenStack> {
-            "Orientation" => Orientation.Vertical
+    let update message (model: TestPage.Model) =
+        match message with
+        | TestPage.Message.SetText text -> { model with HoverText = text }, Cmd.none
+        | TestPage.Message.ClearText -> { model with HoverText = String.empty }, Cmd.none
+
+    let view (model: TestPage.Model) dispatch : Node =
+
+        div {
+            attr.``class`` "center-wrapper"
 
             comp<RadzenStack> {
-                "Orientation" => Orientation.Horizontal
-                
-                comp<HoverArea> {
-                    "OnMouseOver" => fun () -> dispatch (SetHoverText "Item 1")
-                    "OnMouseOut" => fun () -> dispatch ClearHoverText
+                "Orientation" => Orientation.Vertical
+
+                comp<RadzenStack> {
+                    "Orientation" => Orientation.Horizontal
+
+                    comp<HoverArea> {
+                        "OnMouseOver" => fun () -> dispatch (TestPage.Message.SetText "Item 1")
+                        "OnMouseOut" => fun () -> dispatch TestPage.Message.ClearText
+                    }
+
+                    comp<HoverArea> {
+                        "OnMouseOver" => fun () -> dispatch (TestPage.Message.SetText "Item 2")
+                        "OnMouseOut" => fun () -> dispatch TestPage.Message.ClearText
+                    }
+
+                    comp<HoverArea> {
+                        "OnMouseOver" => fun () -> dispatch (TestPage.Message.SetText "Item 3")
+                        "OnMouseOut" => fun () -> dispatch TestPage.Message.ClearText
+                    }
                 }
 
-                comp<HoverArea> {
-                    "OnMouseOver" => fun () -> dispatch (SetHoverText "Item 2")
-                    "OnMouseOut" => fun () -> dispatch ClearHoverText
-                }
-
-                comp<HoverArea> {
-                    "OnMouseOver" => fun () -> dispatch (SetHoverText "Item 3")
-                    "OnMouseOut" => fun () -> dispatch ClearHoverText
+                div {
+                    attr.``class`` "center-text"
+                    
+                    cond (System.String.IsNullOrWhiteSpace model.HoverText) <| function
+                        | true -> p { "<hover over a tile>" }
+                        | false -> p { model.HoverText }
                 }
             }
-            
-            p { model.HoverText }
         }

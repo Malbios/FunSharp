@@ -7,14 +7,13 @@
   <ItemGroup>
     <Compile Include="Version.fs" />
     <Compile Include="Routes.fs" />
+    <Compile Include="Model.fs" />
     <Compile Include="Components\HoverArea.fs" />
     <Compile Include="Pages\Root.fs" />
     <Compile Include="Pages\NotFound.fs" />
     <Compile Include="Pages\AccessDenied.fs" />
     <Compile Include="Pages\TestPage.fs" />
-    <Compile Include="Model.fs" />
-    <Compile Include="Message.fs" />
-    <Compile Include="ModelUpdate.fs" />
+    <Compile Include="Update.fs" />
     <Compile Include="Main.fs" />
     <Compile Include="Startup.fs" />
   </ItemGroup>

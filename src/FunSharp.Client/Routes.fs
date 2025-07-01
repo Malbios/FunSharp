@@ -1,4 +1,4 @@
-namespace FunSharp.Client 
+namespace FunSharp.Client
 
 open Bolero
 

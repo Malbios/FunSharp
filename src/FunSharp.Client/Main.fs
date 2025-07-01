@@ -4,6 +4,7 @@ open System
 open Elmish
 open Bolero
 open Bolero.Html
+open FunSharp.Client.Model
 open FunSharp.Common
 open Radzen.Blazor
 
@@ -14,7 +15,7 @@ let currentTheme model =
     
 let page model (dispatch: Message -> unit) =
     let testPageDispatch message =
-        dispatch (Message.TestPageMessage message)
+        dispatch (Message.TestPageMsg message)
         
     Main()
         .Body(
@@ -28,7 +29,7 @@ let page model (dispatch: Message -> unit) =
                     | Page.NotFound -> NotFound.page
                     | Page.AccessDenied -> AccessDenied.page
                     
-                    | Page.TestPage -> TestPage.view model.TestPage testPageDispatch
+                    | Page.TestPage -> Pages.TestPage.view model.TestPage testPageDispatch
             }
         )
         .Theme(Union.toString (currentTheme model))
@@ -57,7 +58,7 @@ let view model (dispatch: Message -> unit) =
     }
 
 type ClientApplication() =
-    inherit ProgramComponent<Model, Message>()
+    inherit ProgramComponent<ClientState, Message>()
 
     let log (message: string) = Console.WriteLine message
 
@@ -76,12 +77,12 @@ type ClientApplication() =
 
         let getCurrentUrl = fun _ -> this.NavigationManager.Uri
         
-        let update = ModelUpdate.update navigate getCurrentUrl
+        let update = Update.update navigate getCurrentUrl
 
         let router =
             Router.infer Message.SetPage _.Page |> Router.withNotFound Page.NotFound
 
         log $"Serving client application from '{baseUrl}'"
 
-        Program.mkProgram (fun _ -> ModelUpdate.initModel, Cmd.none) update view
+        Program.mkProgram (fun _ -> ClientState.initial, Cmd.none) update view
         |> Program.withRouter router

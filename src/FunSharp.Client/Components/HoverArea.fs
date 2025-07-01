@@ -8,10 +8,7 @@ type HoverArea() =
     inherit ElmishComponent<unit, unit>()
     
     [<Parameter>]
-    member val Width: string = "50px" with get, set
-    [<Parameter>]
-    member val Height: string = "50px" with get, set
-    
+    member val Size: string * string = "50px", "50px" with get, set
     [<Parameter>]
     member val OnMouseOver: unit -> unit = ignore with get, set
     [<Parameter>]
@@ -20,7 +17,7 @@ type HoverArea() =
     override this.View _ _ =
         div {
             attr.``class`` "hover-area"
-            attr.style $"width: {this.Width}; height: {this.Height};"
+            attr.style $"width: {fst this.Size}; height: {snd this.Size};"
             
             on.mouseover (fun _ -> this.OnMouseOver ())
             on.mouseout (fun _ -> this.OnMouseOut ())
