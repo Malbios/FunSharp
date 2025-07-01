@@ -5,6 +5,7 @@
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Version.fs" />
     <Compile Include="Routes.fs" />
     <Compile Include="Components\HoverArea.fs" />
     <Compile Include="Pages\Root.fs" />

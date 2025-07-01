@@ -12,25 +12,41 @@ open Microsoft.AspNetCore.Http.Json
 open Microsoft.Extensions.DependencyInjection
 open Bolero.Server
 open Microsoft.Extensions.Hosting
+open Microsoft.Extensions.Logging
+open Microsoft.Extensions.Options
 open Radzen
 
 open FunSharp.Common
+open FunSharp.Model
 
 module Startup =
+    
+    let createPlayerAccountsPersistence (services: IServiceProvider) : Persistence.PlayerAccounts =
+        
+        let configuration = services.GetService<IOptions<PersistenceConfiguration>>() 
+        
+        Persistence.PlayerAccounts(configuration.Value.DatabaseFilePath)
+        
+    let createLogger (services: IServiceProvider) name = services.GetRequiredService<ILoggerFactory>().CreateLogger(name)
 
     [<EntryPoint>]
     let main args =
 
-        Console.WriteLine("Application started. Initializing...")
+        Console.WriteLine("FunSharp Server started. Initializing...")
 
         let builder = WebApplication.CreateBuilder(args)
+        
+        builder.Logging
+            .ClearProviders()
+            .AddConsole()
+            .AddDebug()
+        |> ignore
         
         builder.Services.AddRadzenComponents() |> ignore
 
         builder.WebHost.UseStaticWebAssets() |> ignore
 
         let services = builder.Services
-        let configuration = builder.Configuration
 
         services
             .AddHttpLogging(fun _ -> ())
@@ -38,6 +54,10 @@ module Startup =
             .AddBoleroHost()
             .AddBlazoredLocalStorage()
             .Configure<JsonOptions>(fun (o: JsonOptions) -> JsonSerializer.configure o.SerializerOptions)
+        |> ignore
+        
+        services
+            .AddSingleton<Persistence.PlayerAccounts>(createPlayerAccountsPersistence)
         |> ignore
 
         services
@@ -71,6 +91,8 @@ module Startup =
 
         let app = builder.Build()
         let serviceProvider = app.Services
+        
+        let logger = "FunSharp.Initialization" |> createLogger serviceProvider
 
         if env.IsDevelopment() then
             app.UseWebAssemblyDebugging()
@@ -92,6 +114,8 @@ module Startup =
                 endpoints.MapFallbackToBolero(Index.page) |> ignore)
         |> ignore
 
+        logger.LogTrace($"Initialization finished - V{Version.current}")
+        
         app.Run()
 
         0

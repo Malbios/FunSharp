@@ -6,9 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="PersistenceConfiguration.fs" />
         <Compile Include="FSharpBsonMapper.fs" />
         <Compile Include="LiteDbPersistence.fs" />
-        <Compile Include="PlayerAccounts.fs" />
+        <Compile Include="Persistence.fs" />
     </ItemGroup>
 
     <ItemGroup>
