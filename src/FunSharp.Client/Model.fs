@@ -2,6 +2,7 @@ namespace FunSharp.Client.Model
 
 open FunSharp.Common
 open FunSharp.Client
+open FunSharp.Model
 
 type NavigationType =
     | Local
@@ -18,22 +19,28 @@ type UserSettings = {
 module TestPage =
 
     type Model = {
+        TestText: string
         HoverText: string
     }
 
     let initial = {
+        TestText = String.empty
         HoverText = String.empty
     }
 
     type Message =
         | SetText of string
         | ClearText
+        | StartGame
+        | GameStarted of Game.Session
+        | GameError of exn
 
 type ClientState = {
     Page: Page
     Error: string option
     UserSettings: UserSettings
     TestPage: TestPage.Model
+    Test: string
 }
 
 [<RequireQualifiedAccess>]
@@ -45,6 +52,7 @@ module ClientState =
             Theme = Some ThemeMode.Dark
         }
         TestPage = TestPage.initial
+        Test = String.empty
     }
 
 [<RequireQualifiedAccess>]

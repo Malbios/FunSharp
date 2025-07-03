@@ -8,6 +8,7 @@
     <Compile Include="Version.fs" />
     <Compile Include="Routes.fs" />
     <Compile Include="Model.fs" />
+    <Compile Include="GameClient.fs" />
     <Compile Include="Components\HoverArea.fs" />
     <Compile Include="Pages\Root.fs" />
     <Compile Include="Pages\NotFound.fs" />

@@ -14,4 +14,8 @@
       <Compile Include="IPersistence.fs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Bolero" Version="0.24.39" />
+    </ItemGroup>
+
 </Project>

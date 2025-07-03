@@ -1,9 +1,11 @@
 module FunSharp.Client.Main
 
 open System
+open Bolero.Remoting
 open Elmish
 open Bolero
 open Bolero.Html
+open FunSharp.Abstraction
 open FunSharp.Client.Model
 open FunSharp.Common
 open Radzen.Blazor
@@ -83,6 +85,6 @@ type ClientApplication() =
             Router.infer Message.SetPage _.Page |> Router.withNotFound Page.NotFound
 
         log $"Serving client application from '{baseUrl}'"
-
+        
         Program.mkProgram (fun _ -> ClientState.initial, Cmd.none) update view
         |> Program.withRouter router

@@ -23,9 +23,15 @@ module Startup =
     
     let createPlayerAccountsPersistence (services: IServiceProvider) : Persistence.PlayerAccounts =
         
-        let configuration = services.GetService<IOptions<PersistenceConfiguration>>() 
+        let configuration = services.GetService<IOptions<PersistenceConfiguration>>()
         
         Persistence.PlayerAccounts(configuration.Value.DatabaseFilePath)
+    
+    let createGameSessionsPersistence (services: IServiceProvider) : Persistence.GameSessions =
+        
+        let configuration = services.GetService<IOptions<PersistenceConfiguration>>()
+        
+        Persistence.GameSessions(configuration.Value.DatabaseFilePath)
         
     let createLogger (services: IServiceProvider) name = services.GetRequiredService<ILoggerFactory>().CreateLogger(name)
 
@@ -47,6 +53,7 @@ module Startup =
         builder.WebHost.UseStaticWebAssets() |> ignore
 
         let services = builder.Services
+        let configuration = builder.Configuration
 
         services
             .AddHttpLogging(fun _ -> ())
@@ -57,7 +64,13 @@ module Startup =
         |> ignore
         
         services
+            .AddOptions<PersistenceConfiguration>()
+            .Bind(configuration.GetSection("Persistence"))
+        |> ignore
+        
+        services
             .AddSingleton<Persistence.PlayerAccounts>(createPlayerAccountsPersistence)
+            .AddSingleton<Persistence.GameSessions>(createGameSessionsPersistence)
         |> ignore
 
         services
@@ -88,6 +101,7 @@ module Startup =
 
         services.AddMvc() |> ignore
         services.AddServerSideBlazor() |> ignore
+        services.AddControllers() |> ignore
 
         let app = builder.Build()
         let serviceProvider = app.Services
@@ -108,7 +122,8 @@ module Startup =
             .UseEndpoints(fun endpoints ->
                 if env.IsDevelopment() then
                     endpoints.UseHotReload()
-
+                    
+                endpoints.MapControllers() |> ignore
                 endpoints.MapBoleroRemoting() |> ignore
                 endpoints.MapBlazorHub() |> ignore
                 endpoints.MapFallbackToBolero(Index.page) |> ignore)

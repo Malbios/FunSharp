@@ -6,7 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="PlayerAccount.fs" />
+        <Compile Include="Errors.fs" />
+        <Compile Include="Common.fs" />
+        <Compile Include="Player.fs" />
+        <Compile Include="Game.fs" />
     </ItemGroup>
 
     <ItemGroup>

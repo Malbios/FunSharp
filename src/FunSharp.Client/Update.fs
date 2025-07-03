@@ -2,6 +2,7 @@ namespace FunSharp.Client
 
 open System
 open Elmish
+open FunSharp.Abstraction
 open FunSharp.Client.Model
 open FunSharp.Common
 
@@ -14,6 +15,8 @@ module Update =
             let model, cmd =
                 match page with
                 | Page.Root -> { model with Page = page }, Cmd.ofMsg (Message.SetPage Page.TestPage)
+                | Page.TestPage ->
+                    { model with Page = page }, Cmd.none
                 | _ -> { model with Page = page }, Cmd.none
 
             let model = { model with Error = None }

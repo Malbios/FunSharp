@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Bolero.Server" Version="0.24.39" />
       <PackageReference Include="LiteDB" Version="5.0.21" />
     </ItemGroup>
 
